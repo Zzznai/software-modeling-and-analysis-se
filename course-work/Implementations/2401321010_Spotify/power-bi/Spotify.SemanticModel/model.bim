@@ -1,0 +1,1333 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "DimDate",
+        "lineageTag": "1a673180-c2fd-58af-9dbd-8275ab45f06c",
+        "columns": [
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey",
+            "lineageTag": "852fa542-eaea-5c9d-b2b1-703e637ca163",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "FullDate",
+            "dataType": "dateTime",
+            "sourceColumn": "FullDate",
+            "lineageTag": "18f93e74-228f-5df3-bd0e-c6e800f3d989",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd",
+            "isKey": true
+          },
+          {
+            "name": "DayOfMonth",
+            "dataType": "int64",
+            "sourceColumn": "DayOfMonth",
+            "lineageTag": "9dd447ca-fe46-516b-847f-e25dbbdfa171",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DayOfWeek",
+            "dataType": "int64",
+            "sourceColumn": "DayOfWeek",
+            "lineageTag": "46208b8e-70d3-51fb-9982-6810fbf0b594",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DayName",
+            "dataType": "string",
+            "sourceColumn": "DayName",
+            "lineageTag": "0211ed51-17bb-5a61-b78b-37259a8e5407",
+            "summarizeBy": "none",
+            "sortByColumn": "DayOfWeek"
+          },
+          {
+            "name": "IsWeekend",
+            "dataType": "boolean",
+            "sourceColumn": "IsWeekend",
+            "lineageTag": "6c81807d-057e-592c-99da-35a2e97af056",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "WeekOfYear",
+            "dataType": "int64",
+            "sourceColumn": "WeekOfYear",
+            "lineageTag": "ab0a2a75-7070-52b1-b79e-606e2d03ec63",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MonthNumber",
+            "dataType": "int64",
+            "sourceColumn": "MonthNumber",
+            "lineageTag": "f9d20858-61c2-5507-b2ef-18a08d42f8fc",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MonthName",
+            "dataType": "string",
+            "sourceColumn": "MonthName",
+            "lineageTag": "a4398295-691f-5c73-b409-a49f7d798fe0",
+            "summarizeBy": "none",
+            "sortByColumn": "MonthNumber"
+          },
+          {
+            "name": "YearMonth",
+            "dataType": "string",
+            "sourceColumn": "YearMonth",
+            "lineageTag": "a1664476-56f8-5496-bc63-87f2874af370",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Quarter",
+            "dataType": "int64",
+            "sourceColumn": "Quarter",
+            "lineageTag": "4249b708-7ce2-5c55-9e9d-245bc145afb9",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "sourceColumn": "Year",
+            "lineageTag": "8af5c062-8660-5663-bb60-d61632f40c4e",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimDate",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"localhost\", \"SpotifyDW\"),",
+                "    Data = Source{[Schema=\"dbo\",Item=\"DimDate\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ],
+        "dataCategory": "Time"
+      },
+      {
+        "name": "DimTime",
+        "lineageTag": "d3d2de0c-e71d-5cc7-8966-539a0aa6f815",
+        "columns": [
+          {
+            "name": "TimeKey",
+            "dataType": "int64",
+            "sourceColumn": "TimeKey",
+            "lineageTag": "15798098-1437-5bf1-a528-7edd9f326309",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "HourLabel",
+            "dataType": "string",
+            "sourceColumn": "HourLabel",
+            "lineageTag": "8f42e810-ca7d-5968-a9d1-7f767e79227e",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PartOfDay",
+            "dataType": "string",
+            "sourceColumn": "PartOfDay",
+            "lineageTag": "b36383a1-c4a9-578a-b524-ec0418a239d9",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimTime",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"localhost\", \"SpotifyDW\"),",
+                "    Data = Source{[Schema=\"dbo\",Item=\"DimTime\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimUser",
+        "lineageTag": "17602c6e-cf64-5bff-8b2a-a184b972856a",
+        "columns": [
+          {
+            "name": "UserKey",
+            "dataType": "int64",
+            "sourceColumn": "UserKey",
+            "lineageTag": "9c78f693-0362-5b54-bab9-afe4614e141d",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "UserID",
+            "dataType": "int64",
+            "sourceColumn": "UserID",
+            "lineageTag": "a0a2a02d-3e53-58c1-9944-f6d620f45988",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "Username",
+            "dataType": "string",
+            "sourceColumn": "Username",
+            "lineageTag": "81a72952-6931-53bf-8a78-71d7f722c9be",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DisplayName",
+            "dataType": "string",
+            "sourceColumn": "DisplayName",
+            "lineageTag": "7ec97909-5116-5b42-80f4-327ddcf60c8a",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Gender",
+            "dataType": "string",
+            "sourceColumn": "Gender",
+            "lineageTag": "febd9554-7f30-5cf7-9938-9bb314cf9a7c",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "AgeGroup",
+            "dataType": "string",
+            "sourceColumn": "AgeGroup",
+            "lineageTag": "b4004202-6e78-510b-b19c-9bd1f2500eb7",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Role",
+            "dataType": "string",
+            "sourceColumn": "Role",
+            "lineageTag": "78fd187e-0405-591d-b4e0-195883a0879f",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SubscriptionType",
+            "dataType": "string",
+            "sourceColumn": "SubscriptionType",
+            "lineageTag": "e7e18556-b880-53ed-ba66-b2acbc35304a",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsStudentVerified",
+            "dataType": "boolean",
+            "sourceColumn": "IsStudentVerified",
+            "lineageTag": "dd5d4c2f-376f-571b-afee-bfe24601b9d1",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "RegistrationDate",
+            "dataType": "dateTime",
+            "sourceColumn": "RegistrationDate",
+            "lineageTag": "c018b160-54ad-5c69-8092-578b61fa6fbd",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimUser",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"localhost\", \"SpotifyDW\"),",
+                "    Data = Source{[Schema=\"dbo\",Item=\"DimUser\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimLocation",
+        "lineageTag": "66050b0c-c5ab-5127-b3e5-9e31829720a0",
+        "columns": [
+          {
+            "name": "LocationKey",
+            "dataType": "int64",
+            "sourceColumn": "LocationKey",
+            "lineageTag": "7f890a2b-eb00-51ee-a6e4-1c4808d20509",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "CountryID",
+            "dataType": "int64",
+            "sourceColumn": "CountryID",
+            "lineageTag": "047283b5-241d-5ae7-96a7-c29ce18871fb",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "CountryName",
+            "dataType": "string",
+            "sourceColumn": "CountryName",
+            "lineageTag": "221879a8-2194-5c37-8bae-781879bfaf44",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsoCode",
+            "dataType": "string",
+            "sourceColumn": "IsoCode",
+            "lineageTag": "1465b2d9-450c-55a5-8dd3-bb292662ba91",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Region",
+            "dataType": "string",
+            "sourceColumn": "Region",
+            "lineageTag": "45afd171-8934-5c28-a02e-4a3edd5f9e07",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimLocation",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"localhost\", \"SpotifyDW\"),",
+                "    Data = Source{[Schema=\"dbo\",Item=\"DimLocation\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimTrack",
+        "lineageTag": "a61df06f-a99b-52df-bc1c-f6163e5e2459",
+        "columns": [
+          {
+            "name": "TrackKey",
+            "dataType": "int64",
+            "sourceColumn": "TrackKey",
+            "lineageTag": "873eb9f1-97c6-59b1-a05f-1ef3b3036ec5",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "TrackID",
+            "dataType": "int64",
+            "sourceColumn": "TrackID",
+            "lineageTag": "8a00132e-af1e-537a-8c15-16200e1e5ddc",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "Title",
+            "dataType": "string",
+            "sourceColumn": "Title",
+            "lineageTag": "5b204f36-24a9-5e23-ae7b-764f7497c53b",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "AlbumTitle",
+            "dataType": "string",
+            "sourceColumn": "AlbumTitle",
+            "lineageTag": "eca676a2-c14d-5723-9cf0-0b3389e49211",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "AlbumType",
+            "dataType": "string",
+            "sourceColumn": "AlbumType",
+            "lineageTag": "0bb42699-6b71-565b-ab3a-6e574fe30734",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Label",
+            "dataType": "string",
+            "sourceColumn": "Label",
+            "lineageTag": "60695a10-5b4a-5784-b2bc-09cb1206ad69",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ReleaseDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ReleaseDate",
+            "lineageTag": "9fbb959a-f9ed-56c4-8e54-5eb0dd1e7b8f",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "ReleaseYear",
+            "dataType": "int64",
+            "sourceColumn": "ReleaseYear",
+            "lineageTag": "2ee3b38f-7915-51d5-8a78-2d51ea8787b5",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DurationSeconds",
+            "dataType": "int64",
+            "sourceColumn": "DurationSeconds",
+            "lineageTag": "f22d74f3-2880-532f-a067-9120a56f0791",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsExplicit",
+            "dataType": "boolean",
+            "sourceColumn": "IsExplicit",
+            "lineageTag": "59fb7aa6-6866-5e2f-8622-9518078bc372",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimTrack",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"localhost\", \"SpotifyDW\"),",
+                "    Data = Source{[Schema=\"dbo\",Item=\"DimTrack\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimArtist",
+        "lineageTag": "a9ecb922-59a0-5a25-9cbd-3b9b12deabab",
+        "columns": [
+          {
+            "name": "ArtistKey",
+            "dataType": "int64",
+            "sourceColumn": "ArtistKey",
+            "lineageTag": "ffc4236f-fdc7-5fc0-8606-42499f1799c4",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "ArtistID",
+            "dataType": "int64",
+            "sourceColumn": "ArtistID",
+            "lineageTag": "144dce3a-9dbb-51fd-bed3-188b76f8b882",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "ArtistName",
+            "dataType": "string",
+            "sourceColumn": "ArtistName",
+            "lineageTag": "552ab82c-9cb5-52b1-b6f2-580693d07fc6",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsVerified",
+            "dataType": "boolean",
+            "sourceColumn": "IsVerified",
+            "lineageTag": "3bc55017-ea78-5abd-84e9-6c09bb62be88",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MonthlyListeners",
+            "dataType": "int64",
+            "sourceColumn": "MonthlyListeners",
+            "lineageTag": "49f67ffc-a595-5617-9dd4-5ef2e972cc49",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FollowersCount",
+            "dataType": "int64",
+            "sourceColumn": "FollowersCount",
+            "lineageTag": "420497bc-3270-58de-8387-d06cf94dcb35",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimArtist",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"localhost\", \"SpotifyDW\"),",
+                "    Data = Source{[Schema=\"dbo\",Item=\"DimArtist\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimGenre",
+        "lineageTag": "d2c41567-0b82-5dcb-a3f1-863095b77df8",
+        "columns": [
+          {
+            "name": "GenreKey",
+            "dataType": "int64",
+            "sourceColumn": "GenreKey",
+            "lineageTag": "6d3f0108-1724-5eda-9c5e-0241190dd64d",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "GenreID",
+            "dataType": "int64",
+            "sourceColumn": "GenreID",
+            "lineageTag": "a4267eec-5f72-545a-bb3d-47036493ff0a",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "GenreName",
+            "dataType": "string",
+            "sourceColumn": "GenreName",
+            "lineageTag": "0874ae56-fbc0-501a-8d76-0be7c446c468",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimGenre",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"localhost\", \"SpotifyDW\"),",
+                "    Data = Source{[Schema=\"dbo\",Item=\"DimGenre\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimDevice",
+        "lineageTag": "04364af6-9918-5b35-adeb-69de325e3ff3",
+        "columns": [
+          {
+            "name": "DeviceKey",
+            "dataType": "int64",
+            "sourceColumn": "DeviceKey",
+            "lineageTag": "aceedddb-c5e2-53a0-9eed-b6f86ad1526c",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "DeviceID",
+            "dataType": "int64",
+            "sourceColumn": "DeviceID",
+            "lineageTag": "51ec697c-f9c2-5027-8f03-6afed74ae675",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "DeviceType",
+            "dataType": "string",
+            "sourceColumn": "DeviceType",
+            "lineageTag": "6f3507eb-6e73-5b9e-9302-5ffdeccc727b",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Platform",
+            "dataType": "string",
+            "sourceColumn": "Platform",
+            "lineageTag": "de71192f-d84d-5664-a0c1-6633983bd145",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimDevice",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"localhost\", \"SpotifyDW\"),",
+                "    Data = Source{[Schema=\"dbo\",Item=\"DimDevice\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimPlan",
+        "lineageTag": "b5bc1374-3981-5e67-b408-7a906d07d1b7",
+        "columns": [
+          {
+            "name": "PlanKey",
+            "dataType": "int64",
+            "sourceColumn": "PlanKey",
+            "lineageTag": "dd3fd718-b999-5504-8087-aa96c9c3a111",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "PlanID",
+            "dataType": "int64",
+            "sourceColumn": "PlanID",
+            "lineageTag": "5114a127-eda5-5422-8a03-97ecdb4748a2",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "PlanName",
+            "dataType": "string",
+            "sourceColumn": "PlanName",
+            "lineageTag": "0d9dcbc9-b513-5ea8-b18f-a957cd15a431",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PlanType",
+            "dataType": "string",
+            "sourceColumn": "PlanType",
+            "lineageTag": "34e59c49-23a1-5fab-a7a8-2796d02ab003",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MonthlyPrice",
+            "dataType": "decimal",
+            "sourceColumn": "MonthlyPrice",
+            "lineageTag": "a065096d-7050-5f15-9e78-80f761d114e3",
+            "summarizeBy": "none",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "MaxAccounts",
+            "dataType": "int64",
+            "sourceColumn": "MaxAccounts",
+            "lineageTag": "bbc2f6d1-e982-5b60-9c50-36054dcc615d",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "HasAds",
+            "dataType": "boolean",
+            "sourceColumn": "HasAds",
+            "lineageTag": "eb056791-dfe0-5162-b69e-1fabf7cb73e6",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimPlan",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"localhost\", \"SpotifyDW\"),",
+                "    Data = Source{[Schema=\"dbo\",Item=\"DimPlan\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimPaymentMethod",
+        "lineageTag": "1939681c-4aa6-545e-9a14-6f4282627004",
+        "columns": [
+          {
+            "name": "PaymentMethodKey",
+            "dataType": "int64",
+            "sourceColumn": "PaymentMethodKey",
+            "lineageTag": "f1547159-ff83-5b8c-98c3-4db43a611b1e",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "MethodName",
+            "dataType": "string",
+            "sourceColumn": "MethodName",
+            "lineageTag": "446d01e4-b1c1-5683-861e-7812aa0f1c7b",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MethodType",
+            "dataType": "string",
+            "sourceColumn": "MethodType",
+            "lineageTag": "a8abe0d9-c8d1-5319-9a34-9c3013a6ae02",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimPaymentMethod",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"localhost\", \"SpotifyDW\"),",
+                "    Data = Source{[Schema=\"dbo\",Item=\"DimPaymentMethod\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactStreams",
+        "lineageTag": "f6385db9-ebc9-5825-b111-70676b7a554c",
+        "columns": [
+          {
+            "name": "StreamKey",
+            "dataType": "int64",
+            "sourceColumn": "StreamKey",
+            "lineageTag": "e45751a2-dbf4-5c4c-8f08-8796bbc4bb6e",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "StreamID",
+            "dataType": "int64",
+            "sourceColumn": "StreamID",
+            "lineageTag": "81a8970f-cc20-5045-b81b-01b2d9ba8c2f",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey",
+            "lineageTag": "aafe24d2-c465-58e8-b8b6-0fb37ad2e257",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "TimeKey",
+            "dataType": "int64",
+            "sourceColumn": "TimeKey",
+            "lineageTag": "4797506c-1fe9-5ce2-a13f-eabe6a3d997f",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "UserKey",
+            "dataType": "int64",
+            "sourceColumn": "UserKey",
+            "lineageTag": "a6b42874-de6a-54e2-b75f-12047436d2b1",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "LocationKey",
+            "dataType": "int64",
+            "sourceColumn": "LocationKey",
+            "lineageTag": "b62522d8-7389-5875-9dcf-8de076c80ae6",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "TrackKey",
+            "dataType": "int64",
+            "sourceColumn": "TrackKey",
+            "lineageTag": "d0f491f2-28b9-5fee-a1e7-5343f25deb38",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "ArtistKey",
+            "dataType": "int64",
+            "sourceColumn": "ArtistKey",
+            "lineageTag": "901cb74b-ec47-5fcc-bff2-b59f7ccc2428",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "GenreKey",
+            "dataType": "int64",
+            "sourceColumn": "GenreKey",
+            "lineageTag": "fcde100b-170a-5da7-8440-174270766127",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "DeviceKey",
+            "dataType": "int64",
+            "sourceColumn": "DeviceKey",
+            "lineageTag": "2f3a8875-6485-5038-ab15-a04d30345c51",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "SecondsPlayed",
+            "dataType": "int64",
+            "sourceColumn": "SecondsPlayed",
+            "lineageTag": "3b19f0e8-4b3f-5f9f-96db-de8884f2026e",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "MinutesPlayed",
+            "dataType": "decimal",
+            "sourceColumn": "MinutesPlayed",
+            "lineageTag": "93acfd7e-26bc-51d2-bd84-b4746833fefb",
+            "summarizeBy": "sum",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "StreamCount",
+            "dataType": "int64",
+            "sourceColumn": "StreamCount",
+            "lineageTag": "c41bafd4-8fd9-52ee-b068-5cccc5cc7ae3",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "IsCounted",
+            "dataType": "boolean",
+            "sourceColumn": "IsCounted",
+            "lineageTag": "50873e08-7d44-53b4-a365-b2c485d5a25f",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsSkipped",
+            "dataType": "boolean",
+            "sourceColumn": "IsSkipped",
+            "lineageTag": "21188703-4362-5f2b-94e3-007a2109d1c4",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactStreams",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"localhost\", \"SpotifyDW\"),",
+                "    Data = Source{[Schema=\"dbo\",Item=\"FactStreams\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Streams",
+            "expression": "COUNTROWS ( FactStreams )",
+            "formatString": "#,0",
+            "lineageTag": "7aa37d7c-9464-5185-9962-7d9543cc205c"
+          },
+          {
+            "name": "Counted Streams",
+            "expression": "CALCULATE ( COUNTROWS ( FactStreams ), FactStreams[IsCounted] = TRUE () )",
+            "formatString": "#,0",
+            "lineageTag": "24b37b53-8d3b-5065-9115-5b72d60ddad6"
+          },
+          {
+            "name": "Hours Played",
+            "expression": "DIVIDE ( SUM ( FactStreams[MinutesPlayed] ), 60 )",
+            "formatString": "#,0",
+            "lineageTag": "6133a9cb-86cd-5172-b5e0-f4308cc0210e"
+          },
+          {
+            "name": "Active Listeners",
+            "expression": "DISTINCTCOUNT ( FactStreams[UserKey] )",
+            "formatString": "#,0",
+            "lineageTag": "95fe78e6-4259-5a30-855d-15ad741b263f"
+          },
+          {
+            "name": "Skip Rate",
+            "expression": "DIVIDE ( CALCULATE ( COUNTROWS ( FactStreams ), FactStreams[IsSkipped] = TRUE () ), [Total Streams] )",
+            "formatString": "0.0%",
+            "lineageTag": "6de7c61f-5508-5dbc-9d92-2704dd2c4bd2"
+          }
+        ]
+      },
+      {
+        "name": "FactPayments",
+        "lineageTag": "5c0e958e-62d9-5955-bb8c-95649fb39e35",
+        "columns": [
+          {
+            "name": "PaymentKey",
+            "dataType": "int64",
+            "sourceColumn": "PaymentKey",
+            "lineageTag": "f07bce2a-03b9-5d50-906f-aa016e1198f3",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "PaymentID",
+            "dataType": "int64",
+            "sourceColumn": "PaymentID",
+            "lineageTag": "e93a0cb6-3f43-54f1-a375-103ae73240ae",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "SubscriptionID",
+            "dataType": "int64",
+            "sourceColumn": "SubscriptionID",
+            "lineageTag": "c6452ca6-5378-596e-ac54-a40f76bb3be4",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey",
+            "lineageTag": "407fc6e3-cd1f-5ef3-b2e3-a945b9dc0fd1",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "UserKey",
+            "dataType": "int64",
+            "sourceColumn": "UserKey",
+            "lineageTag": "72abdae3-dfe9-554d-a340-21cfe2274748",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "LocationKey",
+            "dataType": "int64",
+            "sourceColumn": "LocationKey",
+            "lineageTag": "46207af6-ed1a-5b23-8615-5a70fd261a83",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "PlanKey",
+            "dataType": "int64",
+            "sourceColumn": "PlanKey",
+            "lineageTag": "0f4e8be2-7198-5110-99ea-408b7be8cb3d",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "PaymentMethodKey",
+            "dataType": "int64",
+            "sourceColumn": "PaymentMethodKey",
+            "lineageTag": "5b237809-00b1-56ef-b392-eaffbc90ae67",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "Amount",
+            "dataType": "decimal",
+            "sourceColumn": "Amount",
+            "lineageTag": "79dc39f7-16c0-5fd7-929b-1216bf368663",
+            "summarizeBy": "sum",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "RefundedAmount",
+            "dataType": "decimal",
+            "sourceColumn": "RefundedAmount",
+            "lineageTag": "99a20006-6035-54fd-a54f-cbdbd4c3c9cf",
+            "summarizeBy": "sum",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Currency",
+            "dataType": "string",
+            "sourceColumn": "Currency",
+            "lineageTag": "4eeed6ec-bc08-536f-817d-bfd71c90d26a",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PaymentCount",
+            "dataType": "int64",
+            "sourceColumn": "PaymentCount",
+            "lineageTag": "dd098fbe-3809-5248-ba22-9995295794f5",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "IsSuccessful",
+            "dataType": "boolean",
+            "sourceColumn": "IsSuccessful",
+            "lineageTag": "c350c954-2ec5-5fee-89cc-83d5916ae02f",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsFailed",
+            "dataType": "boolean",
+            "sourceColumn": "IsFailed",
+            "lineageTag": "c7a6bf83-1f44-59cc-b9b7-8f63cb08e39c",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsRefunded",
+            "dataType": "boolean",
+            "sourceColumn": "IsRefunded",
+            "lineageTag": "dc224e8a-61de-5cd8-aa64-9f4494a71fe0",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactPayments",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"localhost\", \"SpotifyDW\"),",
+                "    Data = Source{[Schema=\"dbo\",Item=\"FactPayments\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Revenue",
+            "expression": "CALCULATE ( SUM ( FactPayments[Amount] ), FactPayments[IsSuccessful] = TRUE () )",
+            "formatString": "€#,0.00",
+            "lineageTag": "70037fbe-ebf9-5040-8ff1-4766edaa8883"
+          },
+          {
+            "name": "Paying Users",
+            "expression": "CALCULATE ( DISTINCTCOUNT ( FactPayments[UserKey] ), FactPayments[IsSuccessful] = TRUE () )",
+            "formatString": "#,0",
+            "lineageTag": "b4fd309b-724f-5c1e-bd0e-dd9fb0263a95"
+          },
+          {
+            "name": "ARPU",
+            "expression": "DIVIDE ( [Revenue], [Paying Users] )",
+            "formatString": "€#,0.00",
+            "lineageTag": "71bc808a-1058-57b9-9880-9a059b8707eb"
+          },
+          {
+            "name": "Failed Payments",
+            "expression": "CALCULATE ( COUNTROWS ( FactPayments ), FactPayments[IsFailed] = TRUE () )",
+            "formatString": "#,0",
+            "lineageTag": "f7a2bf5c-613a-52fe-a373-8c72af60f80f"
+          },
+          {
+            "name": "Refunded Amount",
+            "expression": "SUM ( FactPayments[RefundedAmount] )",
+            "formatString": "€#,0.00",
+            "lineageTag": "4f4bef0a-869d-5142-a4f1-68d179fb6639"
+          }
+        ]
+      },
+      {
+        "name": "FactSubscriptions",
+        "lineageTag": "d299bae2-062a-5415-a3c2-92d315be36e8",
+        "columns": [
+          {
+            "name": "SubscriptionKey",
+            "dataType": "int64",
+            "sourceColumn": "SubscriptionKey",
+            "lineageTag": "515a2187-16fa-5911-a75b-2a020006e000",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "SubscriptionID",
+            "dataType": "int64",
+            "sourceColumn": "SubscriptionID",
+            "lineageTag": "2008be2d-48b7-5f3c-aedc-bb7f957ec969",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "StartDateKey",
+            "dataType": "int64",
+            "sourceColumn": "StartDateKey",
+            "lineageTag": "682f9838-876d-5047-8aa4-ee3838bf9021",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "EndDateKey",
+            "dataType": "int64",
+            "sourceColumn": "EndDateKey",
+            "lineageTag": "3c3008af-2d64-5348-9e0a-fff98e316db6",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "UserKey",
+            "dataType": "int64",
+            "sourceColumn": "UserKey",
+            "lineageTag": "1fa2ad23-8801-51c9-8e4d-4a21d889f26b",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "LocationKey",
+            "dataType": "int64",
+            "sourceColumn": "LocationKey",
+            "lineageTag": "41f8689d-ccf5-586d-8fa0-2aaee46eb362",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "PlanKey",
+            "dataType": "int64",
+            "sourceColumn": "PlanKey",
+            "lineageTag": "bdd89a55-7250-5777-b899-50e5c9f950b0",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "DurationDays",
+            "dataType": "int64",
+            "sourceColumn": "DurationDays",
+            "lineageTag": "6a09a0c7-60b4-5b2e-bedb-7dc24708a19e",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "MonthlyPrice",
+            "dataType": "decimal",
+            "sourceColumn": "MonthlyPrice",
+            "lineageTag": "12faa1ad-6abb-5dbe-a593-025d39c2f485",
+            "summarizeBy": "sum",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "SubscriptionCount",
+            "dataType": "int64",
+            "sourceColumn": "SubscriptionCount",
+            "lineageTag": "841dc53b-1f36-514c-8b46-2d6ca113538a",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "IsPremium",
+            "dataType": "boolean",
+            "sourceColumn": "IsPremium",
+            "lineageTag": "bb9857a9-785d-5291-acf5-779e12182fe3",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsActive",
+            "dataType": "boolean",
+            "sourceColumn": "IsActive",
+            "lineageTag": "908500a4-5619-5e92-9183-c0c13b30fecb",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsCancelled",
+            "dataType": "boolean",
+            "sourceColumn": "IsCancelled",
+            "lineageTag": "5bcdeda3-5aae-535b-8c0c-9d481594d270",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsUpgradeFromFree",
+            "dataType": "boolean",
+            "sourceColumn": "IsUpgradeFromFree",
+            "lineageTag": "f8bfbd8f-6448-5028-8218-d8f9381bf57c",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "AutoRenew",
+            "dataType": "boolean",
+            "sourceColumn": "AutoRenew",
+            "lineageTag": "19afd9a9-bc32-5f80-bc40-de40b0edfd32",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactSubscriptions",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"localhost\", \"SpotifyDW\"),",
+                "    Data = Source{[Schema=\"dbo\",Item=\"FactSubscriptions\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Active Premium Subscribers",
+            "expression": "CALCULATE ( COUNTROWS ( FactSubscriptions ), FactSubscriptions[IsActive] = TRUE (), FactSubscriptions[IsPremium] = TRUE (), REMOVEFILTERS ( DimDate ) )",
+            "formatString": "#,0",
+            "lineageTag": "a85edbc0-0770-511c-89eb-6965eb782a08"
+          },
+          {
+            "name": "Upgrades from Free",
+            "expression": "CALCULATE ( COUNTROWS ( FactSubscriptions ), FactSubscriptions[IsUpgradeFromFree] = TRUE () )",
+            "formatString": "#,0",
+            "lineageTag": "9ff51961-71d1-55a4-bbdf-ab27b710da7e"
+          },
+          {
+            "name": "Cancellations",
+            "expression": "CALCULATE ( COUNTROWS ( FactSubscriptions ), FactSubscriptions[IsCancelled] = TRUE (), USERELATIONSHIP ( FactSubscriptions[EndDateKey], DimDate[DateKey] ) )",
+            "formatString": "#,0",
+            "lineageTag": "8c1e2435-e1cc-592d-a48d-35b24ae14ffd"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "e31794d2-a149-520c-8e5c-1d14aca3c65b",
+        "fromTable": "FactStreams",
+        "fromColumn": "DateKey",
+        "toTable": "DimDate",
+        "toColumn": "DateKey"
+      },
+      {
+        "name": "afadb37a-b628-5acc-9dd0-1458dd5e3155",
+        "fromTable": "FactStreams",
+        "fromColumn": "TimeKey",
+        "toTable": "DimTime",
+        "toColumn": "TimeKey"
+      },
+      {
+        "name": "78bb94f7-055d-5dbf-ad51-8385a878fcd2",
+        "fromTable": "FactStreams",
+        "fromColumn": "UserKey",
+        "toTable": "DimUser",
+        "toColumn": "UserKey"
+      },
+      {
+        "name": "4c652389-b63a-5b9f-8cc5-5aff67a652d3",
+        "fromTable": "FactStreams",
+        "fromColumn": "LocationKey",
+        "toTable": "DimLocation",
+        "toColumn": "LocationKey"
+      },
+      {
+        "name": "b442dfa0-d6a3-5350-8c32-70e75c752ca4",
+        "fromTable": "FactStreams",
+        "fromColumn": "TrackKey",
+        "toTable": "DimTrack",
+        "toColumn": "TrackKey"
+      },
+      {
+        "name": "d95aae08-7890-51f3-bcc2-df69bb987045",
+        "fromTable": "FactStreams",
+        "fromColumn": "ArtistKey",
+        "toTable": "DimArtist",
+        "toColumn": "ArtistKey"
+      },
+      {
+        "name": "9b8344d0-4748-51a4-8d86-0e87beef18a2",
+        "fromTable": "FactStreams",
+        "fromColumn": "GenreKey",
+        "toTable": "DimGenre",
+        "toColumn": "GenreKey"
+      },
+      {
+        "name": "cca4ea9f-dee8-55e8-85ea-18d81f68ee56",
+        "fromTable": "FactStreams",
+        "fromColumn": "DeviceKey",
+        "toTable": "DimDevice",
+        "toColumn": "DeviceKey"
+      },
+      {
+        "name": "f22ae891-cd1c-5e23-b799-b7a2ad2ea504",
+        "fromTable": "FactPayments",
+        "fromColumn": "DateKey",
+        "toTable": "DimDate",
+        "toColumn": "DateKey"
+      },
+      {
+        "name": "c45babe4-806d-52c1-bb62-1e3ccfd2bbf5",
+        "fromTable": "FactPayments",
+        "fromColumn": "UserKey",
+        "toTable": "DimUser",
+        "toColumn": "UserKey"
+      },
+      {
+        "name": "e981dcd6-680f-59bb-9629-20789b43bdda",
+        "fromTable": "FactPayments",
+        "fromColumn": "LocationKey",
+        "toTable": "DimLocation",
+        "toColumn": "LocationKey"
+      },
+      {
+        "name": "cbd5f0e1-acce-5e9f-8a90-660a4cc86ef0",
+        "fromTable": "FactPayments",
+        "fromColumn": "PlanKey",
+        "toTable": "DimPlan",
+        "toColumn": "PlanKey"
+      },
+      {
+        "name": "f608066f-ee75-546e-ba6d-c2ec0078b4c4",
+        "fromTable": "FactPayments",
+        "fromColumn": "PaymentMethodKey",
+        "toTable": "DimPaymentMethod",
+        "toColumn": "PaymentMethodKey"
+      },
+      {
+        "name": "03926c8c-4c55-5847-ba58-a8f778bec1de",
+        "fromTable": "FactSubscriptions",
+        "fromColumn": "StartDateKey",
+        "toTable": "DimDate",
+        "toColumn": "DateKey"
+      },
+      {
+        "name": "e1cb7a94-7cb4-542e-94d0-e37508f4389b",
+        "fromTable": "FactSubscriptions",
+        "fromColumn": "EndDateKey",
+        "toTable": "DimDate",
+        "toColumn": "DateKey",
+        "isActive": false
+      },
+      {
+        "name": "f81369ed-9e12-59e7-8074-c771d1c90b0a",
+        "fromTable": "FactSubscriptions",
+        "fromColumn": "UserKey",
+        "toTable": "DimUser",
+        "toColumn": "UserKey"
+      },
+      {
+        "name": "6388b04b-2bda-5f45-99da-de2703a2644e",
+        "fromTable": "FactSubscriptions",
+        "fromColumn": "LocationKey",
+        "toTable": "DimLocation",
+        "toColumn": "LocationKey"
+      },
+      {
+        "name": "c33e044a-08d1-5481-a60e-74083085e120",
+        "fromTable": "FactSubscriptions",
+        "fromColumn": "PlanKey",
+        "toTable": "DimPlan",
+        "toColumn": "PlanKey"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ]
+  }
+}
