@@ -41,7 +41,6 @@
 ### 3. Технологичен стек
 *Основните технологии, които ще бъдат използвани.*
 
-*   **Сървърна част (Backend):** .NET 8, C# (ASP.NET Core Web API, Entity Framework Core)
 *   **Клиентска част (Frontend):** React
 *   **База данни (Database):** Microsoft SQL Server 2022 (T-SQL – съхранени процедури, функции, тригери)
 *   **Склад от данни и анализи:** SQL Server (звездна схема), Power BI Desktop
